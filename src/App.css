@@ -115,6 +115,7 @@ html {
 @media (min-width: 1300px) {
   .button-grid {
     gap: 2.4rem;
+    padding: 3.2rem;
   }
   .output {
     height: 12.8rem;

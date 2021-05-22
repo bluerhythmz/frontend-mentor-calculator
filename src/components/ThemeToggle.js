@@ -17,7 +17,27 @@ function ThemeToggle({theme, rangeRef, onChange, value}) {
             background-color: ${theme.toggle};
             cursor: pointer;
         }
+        &::-moz-range-thumb {
+            height: 1.4rem;
+            width: 1.4rem;
+            border-radius: 50%;
+            background-color: ${theme.toggle};
+            cursor: pointer;
+        }
+        &::-ms-thumb {
+            height: 1.4rem;
+            width: 1.4rem;
+            border-radius: 50%;
+            background-color: ${theme.toggle};
+            cursor: pointer;
+        }
         &::-webkit-slider-thumb:hover {
+            background-color: ${theme.toggleHover};
+        }
+        &::-moz-range-thumb:hover {
+            background-color: ${theme.toggleHover};
+        }
+        &::-ms-thumb:hover {
             background-color: ${theme.toggleHover};
         }
     `
