@@ -28,7 +28,8 @@ function Calculator({theme}) {
     }
 
     function displayNumber(button) {
-        if (button === "." && output.includes(".")) return
+        if (operator === '' && button === "." && output.includes(".")) return
+        if (operator !== '' && button === "." && output.split(operator)[1].includes('.')) return
         setOutput(prev => prev + button)
     }
 
