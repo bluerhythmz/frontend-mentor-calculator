@@ -26,6 +26,7 @@ function ButtonGrid({theme, onPress, onDelete, onReset, onOperation, onCompute})
     border: none;
     box-shadow: 0 4px ${theme.backgroundButtonPrimaryShadow};
     background-color: ${theme.backgroundButtonPrimary};
+    transition: all .2s ease;
     &:hover {
         background-color: ${theme.backgroundButtonPrimaryHover};
     }

@@ -18,6 +18,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all .3s ease;
 }
 
 .header {
@@ -114,5 +115,13 @@ html {
 @media (min-width: 1300px) {
   .button-grid {
     gap: 2.4rem;
+  }
+  .output {
+    height: 12.8rem;
+  }
+
+  .output__number {
+    font-size: 4.8rem;
+    letter-spacing: -.8px;
   }
 }
