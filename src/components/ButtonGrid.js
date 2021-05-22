@@ -18,7 +18,7 @@ function ButtonGrid({theme, onPress, onDelete, onReset, onOperation, onCompute})
     const operatorArr = ["+", "-", "/", "x"]
 
     const Button = styled.button`
-    font-size: 2.8rem;
+    font-size: ${isDesktop ? "3.2rem" : "2.8rem"};
     padding: .5em 0;
     border-radius: 5px;
     cursor: pointer;
