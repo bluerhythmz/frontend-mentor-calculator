@@ -4,9 +4,9 @@ import ButtonGrid from './ButtonGrid'
 import { useState } from 'react'
 
 function Calculator({theme}) {
-    const [output, setOutput] = useState('')
+    const [firstVal, setFirstVal] = useState('')
+    const [secondVal, setSecondVal] = useState('')
     const [operator, setOperator] = useState('')
-
     function convertNumber(number) {
         const stringNum = number.toString()
         let integerOutput
@@ -28,31 +28,42 @@ function Calculator({theme}) {
     }
 
     function displayNumber(button) {
-        if (operator === '' && button === "." && output.includes(".")) return
-        if (operator !== '' && button === "." && output.split(operator)[1].includes('.')) return
-        setOutput(prev => prev + button)
+        if (operator === '' && button === "." && firstVal.includes(".")) return
+        if (operator !== '' && button === "." && secondVal.includes('.')) return
+        if (operator !== '') {
+            setSecondVal(prev => prev + button)
+        } else {
+            setFirstVal(prev => prev + button)
+        }
     }
 
     function deleteNumber() {
-        setOutput(prev => prev.slice(0, -1))
+        if (firstVal !== '' && operator !== '' && secondVal !== '') {
+            setSecondVal(prev => prev.slice(0, -1))
+        } else if (firstVal !== '' && operator !== '' && secondVal === '') {
+            setOperator('')
+        } else if (firstVal !== '' && operator === '' && secondVal === '') {
+            setFirstVal(prev => prev.slice(0, -1))
+        }
     }
 
     function reset() {
-        setOutput("")
         setOperator('')
+        setFirstVal('')
+        setSecondVal('')
     }
 
     function setOperation(operator) {
-        if (operator !== '' && output.includes(operator)) return
-        if (output === '') return
+        if (secondVal !== '' ) return
+        if (firstVal === '') return
         setOperator(operator)
-        setOutput(prev => prev + operator)
     }
 
     function compute() {
         let result
-        let current = parseFloat(output.split(operator)[1])
-        let previous = parseFloat(output.split(operator)[0])
+        
+        let current = parseFloat(secondVal)
+        let previous = parseFloat(firstVal)
         if (isNaN(current) || isNaN(previous) || operator === '') return
         switch (operator) {
             case "+":
@@ -70,13 +81,14 @@ function Calculator({theme}) {
             default:
                 return
         }
-        setOutput(result)
+        setFirstVal(result)
+        setSecondVal('')
         setOperator('')
     }
 
     return (
         <div className="calculator">
-            <Output operator={operator} convertNumber={convertNumber} output={output} theme={theme}/>
+            <Output firstVal={firstVal} secondVal={secondVal} operator={operator} convertNumber={convertNumber} theme={theme}/>
             <ButtonGrid 
                 onReset={reset} 
                 onOperation={setOperation}
