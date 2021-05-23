@@ -81,7 +81,7 @@ function Calculator({theme}) {
             default:
                 return
         }
-        setFirstVal(result)
+        setFirstVal(result.toFixed())
         setSecondVal('')
         setOperator('')
     }
